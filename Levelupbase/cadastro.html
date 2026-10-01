@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estileto.css" />
+    <title>Login</title>
+</head>
+
+<header>
+    <nav aria-label="Menu principal">
+        <a href="index.html" tabindex="0">Início</a>
+        <a href="produtos.html" tabindex="0">Produtos</a>
+        <a href="login.html" tabindex="0">Login</a>
+        <a href="contato.html" tabindex="0">Contato</a>
+    </nav>
+</header>
+<div class="access-controls">
+    <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+</div>
+<body>
+    <section id="login" class="login">
+        <form action="#" method="post" novalidate>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" aria-required="true">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" aria-required="true">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" aria-required="trFue">
+            </fieldset>
+            <fieldset>
+                <legend>Preferências</legend>
+                <label>
+                    <input type="checkbox" name="newsletter" id="newsletter"> Receber Newsletter
+                </label>
+                <label>
+                    <input type="checkbox" name="termos" id="termos" aria-required="true"> Concordo com os termos
+                </label>
+            </fieldset>
+            <canvas id="captchaCanvas" width="200" height="60" style="border:1px solid #000; margin-bottom:10px;"></canvas>
+
+    <button type="button" onclick="gerarCaptcha()">Gerar outro código</button>
+
+    <br><br>
+    <label>Digite o código:</label>
+    <input type="text" id="captchaInput" required>
+            <button type="submit">Enviar</button>
+            <button type="reset">Limpar</button>
+        </form>
+         <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+    
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+        <script src="main_menu.js"></script>
+</body>
+
+</html>

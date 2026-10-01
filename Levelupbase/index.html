@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LevelUp- Elevando a qualidade da Sua Vida!</title>
+  <link rel="stylesheet" href="estileto.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+
+<div class="access-controls">
+    <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+</div>
+
+
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu" role="menubar">
+          <li role="none"><a role="menuitem" href="index.html">Início</a></li>
+          <li role="none"><a role="menuitem" href="produtos.html">Produtos</a></li>
+          <li role="none"><a role="menuitem" href="login.html">Login</a></li>
+          <li role="none"><a role="menuitem" href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="vlibras-root" aria-hidden="true"></div>
+
+  <main id="main-content" role="main">
+    <section class="hero" role="region" aria-labelledby="hero-title">
+      <h2 id="hero-title">O Universo do Cosplay em um só lugar</h2>
+      <p>Conecte-se com cosplayers, cosmakers e wigmakers. Compre, venda e inspire-se.</p>
+    </section>
+
+    <section class="carrossel-container" aria-label="Galeria de imagens Cosverse" role="region">
+      <div class="carrossel" aria-live="polite">
+        <button id="prev" aria-label="Imagem anterior">⟨</button>
+        <img id="preview" src="" alt="Carregando imagem do carrossel" />
+        <button id="next" aria-label="Próxima imagem">⟩</button>
+      </div>
+      <p id="counter" class="contador" aria-atomic="true"></p>
+    </section><div class="postagens">
+  
+</div>
+
+<section id="produtos" class="produtos" aria-label="Produtos em destaque" role="region">
+  <article class="card" role="article" aria-labelledby="prod1">
+    <img src="imagens/peruca_roxa-genshin_impact.jpg" alt="Peruca roxa de fibra japonesa" />
+    <h3 id="prod1">Peruca Roxa</h3>
+    <p>Fibra japonesa resistente ao calor. Ideal para personagens de anime.</p>
+  </article>
+
+  <article class="card" role="article" aria-labelledby="prod2">
+    <img src="imagens/armadura_EVA.jpg" alt="Armadura de EVA com pintura metálica" />
+    <h3 id="prod2">Armadura EVA</h3>
+    <p>Feita sob medida com detalhes metálicos e pintura durável.</p>
+  </article>
+</section>
+    <footer id="contato" role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+   <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+</body>
+</html>
