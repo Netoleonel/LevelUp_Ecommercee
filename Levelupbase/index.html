@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LevelUp- Elevando a qualidade da Sua Vida!</title>
+  <title>Cosverse - Itens nerd, cosplay e colecionáveis</title>
   <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
@@ -32,8 +33,9 @@
 
   <main id="main-content" role="main">
     <section class="hero" role="region" aria-labelledby="hero-title">
-      <h2 id="hero-title">O Universo do Cosplay em um só lugar</h2>
-      <p>Conecte-se com cosplayers, cosmakers e wigmakers. Compre, venda e inspire-se.</p>
+      <h2 id="hero-title">Tudo para o seu universo nerd</h2>
+      <p>Cosplay, colecionáveis, RPG e games. Escolha, adicione ao carrinho e receba em casa.</p>
+      <a class="btn-link" href="produtos.html">Ver todos os produtos</a>
     </section>
 
     <section class="carrossel-container" aria-label="Galeria de imagens Cosverse" role="region">
@@ -43,21 +45,46 @@
         <button id="next" aria-label="Próxima imagem">⟩</button>
       </div>
       <p id="counter" class="contador" aria-atomic="true"></p>
-    </section><div class="postagens">
-  
-</div>
+    </section><section class="categorias" aria-labelledby="cat-title">
+  <h2 id="cat-title">Compre por categoria</h2>
+  <ul>
+    <li><a href="produtos.html?cat=Cosplay"><span aria-hidden="true">🎭</span> Cosplay</a></li>
+    <li><a href="produtos.html?cat=Colecionáveis"><span aria-hidden="true">🗡️</span> Colecionáveis</a></li>
+    <li><a href="produtos.html?cat=RPG"><span aria-hidden="true">🎲</span> RPG</a></li>
+    <li><a href="produtos.html?cat=Games"><span aria-hidden="true">🖱️</span> Games</a></li>
+    <li><a href="produtos.html?cat=Casa"><span aria-hidden="true">☕</span> Casa</a></li>
+    <li><a href="produtos.html?cat=Roupas"><span aria-hidden="true">👕</span> Roupas</a></li>
+  </ul>
+</section>
 
 <section id="produtos" class="produtos" aria-label="Produtos em destaque" role="region">
-  <article class="card" role="article" aria-labelledby="prod1">
-    <img src="imagens/peruca_roxa-genshin_impact.jpg" alt="Peruca roxa de fibra japonesa" />
+  <article class="card produto" aria-labelledby="prod1">
+    <div class="thumb"><img src="imagens/peruca_roxa-genshin_impact.jpg" alt="Peruca Roxa" onerror="this.replaceWith('💜')"></div>
     <h3 id="prod1">Peruca Roxa</h3>
-    <p>Fibra japonesa resistente ao calor. Ideal para personagens de anime.</p>
+    <p>Fibra japonesa resistente ao calor.</p>
+    <span class="preco">R$ 129,90</span>
+    <a class="btn-link" href="produtos.html">Ver produto</a>
   </article>
-
-  <article class="card" role="article" aria-labelledby="prod2">
-    <img src="imagens/armadura_EVA.jpg" alt="Armadura de EVA com pintura metálica" />
+  <article class="card produto" aria-labelledby="prod2">
+    <div class="thumb"><img src="imagens/armadura_EVA.jpg" alt="Armadura EVA" onerror="this.replaceWith('🛡️')"></div>
     <h3 id="prod2">Armadura EVA</h3>
-    <p>Feita sob medida com detalhes metálicos e pintura durável.</p>
+    <p>Sob medida, com pintura metálica.</p>
+    <span class="preco">R$ 349,00</span>
+    <a class="btn-link" href="produtos.html">Ver produto</a>
+  </article>
+  <article class="card produto" aria-labelledby="prod3">
+    <div class="thumb">🗡️</div>
+    <h3 id="prod3">Action Figure Samurai</h3>
+    <p>Articulada, 18 cm, com base.</p>
+    <span class="preco">R$ 219,90</span>
+    <a class="btn-link" href="produtos.html">Ver produto</a>
+  </article>
+  <article class="card produto" aria-labelledby="prod4">
+    <div class="thumb">🎲</div>
+    <h3 id="prod4">Set de Dados RPG</h3>
+    <p>7 dados de resina com bolsinha.</p>
+    <span class="preco">R$ 59,90</span>
+    <a class="btn-link" href="produtos.html">Ver produto</a>
   </article>
 </section>
     <footer id="contato" role="contentinfo">
