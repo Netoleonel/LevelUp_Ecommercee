@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cosverse - Itens nerd, cosplay e colecionáveis</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+
+<div class="access-controls">
+    <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+</div>
+
+
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="vlibras-root" aria-hidden="true"></div>
+
+  <main id="main-content" role="main">
+    <section class="hero" role="region" aria-labelledby="hero-title">
+      <h2 id="hero-title">Tudo para o seu universo nerd</h2>
+      <p>Cosplay, colecionáveis, RPG e games. Escolha, adicione ao carrinho e receba em casa.</p>
+      <a class="btn-link" href="produtos.html">Ver todos os produtos</a>
+    </section>
+
+    <section class="carrossel-container" aria-label="Galeria de imagens Cosverse" role="region">
+      <div class="carrossel" aria-live="polite">
+        <button id="prev" aria-label="Imagem anterior">⟨</button>
+        <img id="preview" src="" alt="Carregando imagem do carrossel" />
+        <button id="next" aria-label="Próxima imagem">⟩</button>
+      </div>
+      <p id="counter" class="contador" aria-atomic="true"></p>
+    </section><section class="categorias" aria-labelledby="cat-title">
+  <h2 id="cat-title">Compre por categoria</h2>
+  <ul>
+    <li><a href="produtos.html?cat=Cosplay"><span aria-hidden="true">🎭</span> Cosplay</a></li>
+    <li><a href="produtos.html?cat=Colecionáveis"><span aria-hidden="true">🗡️</span> Colecionáveis</a></li>
+    <li><a href="produtos.html?cat=RPG"><span aria-hidden="true">🎲</span> RPG</a></li>
+    <li><a href="produtos.html?cat=Games"><span aria-hidden="true">🖱️</span> Games</a></li>
+    <li><a href="produtos.html?cat=Casa"><span aria-hidden="true">☕</span> Casa</a></li>
+    <li><a href="produtos.html?cat=Roupas"><span aria-hidden="true">👕</span> Roupas</a></li>
+  </ul>
+</section>
+
+<section id="produtos" class="produtos" aria-label="Produtos em destaque" role="region">
+  <article class="card produto" aria-labelledby="prod1">
+    <div class="thumb"><img src="imagens/peruca_roxa-genshin_impact.jpg" alt="Peruca Roxa" onerror="this.replaceWith('💜')"></div>
+    <h3 id="prod1">Peruca Roxa</h3>
+    <p>Fibra japonesa resistente ao calor.</p>
+    <span class="preco">R$ 129,90</span>
+    <a class="btn-link" href="produto.html?id=1">Ver produto</a>
+  </article>
+  <article class="card produto" aria-labelledby="prod2">
+    <div class="thumb"><img src="imagens/armadura_EVA.jpg" alt="Armadura EVA" onerror="this.replaceWith('🛡️')"></div>
+    <h3 id="prod2">Armadura EVA</h3>
+    <p>Sob medida, com pintura metálica.</p>
+    <span class="preco">R$ 349,00</span>
+    <a class="btn-link" href="produto.html?id=2">Ver produto</a>
+  </article>
+  <article class="card produto" aria-labelledby="prod3">
+    <div class="thumb">🗡️</div>
+    <h3 id="prod3">Action Figure Samurai</h3>
+    <p>Articulada, 18 cm, com base.</p>
+    <span class="preco">R$ 219,90</span>
+    <a class="btn-link" href="produto.html?id=3">Ver produto</a>
+  </article>
+  <article class="card produto" aria-labelledby="prod4">
+    <div class="thumb">🎲</div>
+    <h3 id="prod4">Set de Dados RPG</h3>
+    <p>7 dados de resina com bolsinha.</p>
+    <span class="preco">R$ 59,90</span>
+    <a class="btn-link" href="produto.html?id=4">Ver produto</a>
+  </article>
+</section>
+    <footer id="contato" role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+   <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script src="produtos-dados.js" defer></script>
+  <script src="carrinho.js" defer></script>
+  <script src="conta.js" defer></script>
+</body>
+</html>

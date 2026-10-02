@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#cadastro-section">Ir para o cadastro</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+      <div class="access-controls">
+        <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+      </div>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main">
+    <section id="cadastro-section" class="login" aria-labelledby="cadastro-title">
+      <h2 id="cadastro-title">Criar sua conta</h2>
+
+      <!-- action="#" é necessário: o main_menu.js usa form[action="#"] para validar o cadastro -->
+      <form id="cadastro-form" action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Dados pessoais</legend>
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" aria-required="true">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" aria-required="true">
+          <label for="senha">Senha (mínimo 6 caracteres)</label>
+          <input type="password" id="senha" name="senha" autocomplete="new-password" aria-required="true">
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferências</legend>
+          <label>
+            <input type="checkbox" name="newsletter" id="newsletter"> Receber newsletter
+          </label>
+          <label>
+            <input type="checkbox" name="termos" id="termos" aria-required="true"> Concordo com os termos
+          </label>
+        </fieldset>
+
+        <canvas id="captchaCanvas" width="200" height="60" style="border:1px solid #000; margin-bottom:10px;"></canvas>
+        <button type="button" onclick="gerarCaptcha()">Gerar outro código</button>
+
+        <label for="captchaInput">Digite o código acima:</label>
+        <input type="text" id="captchaInput" required>
+
+        <button type="submit">Criar conta</button>
+        <button type="reset">Limpar</button>
+        <p id="mensagem" role="status" aria-live="polite"></p>
+      </form>
+
+      <p>Já tem conta? <a href="login.html">Entre aqui.</a></p>
+    </section>
+  </main>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) new window.VLibras.Widget("https://vlibras.gov.br/app");
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script src="produtos-dados.js" defer></script>
+  <script src="carrinho.js" defer></script>
+  <script src="conta.js" defer></script>
+</body>
+</html>

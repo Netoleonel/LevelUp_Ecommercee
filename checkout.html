@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finalizar compra - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para o pedido</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+      <div class="access-controls">
+        <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+      </div>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="loja" role="main">
+    <h2>Finalizar compra</h2>
+    <div id="area" aria-live="polite"></div>
+    <footer role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) new window.VLibras.Widget("https://vlibras.gov.br/app");
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script src="produtos-dados.js" defer></script>
+  <script src="carrinho.js" defer></script>
+  <script src="conta.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const C = window.Carrinho;
+      const u = window.Conta.usuario();
+      if (!u) { location.replace('login.html?voltar=checkout.html'); return; }
+      const area = document.getElementById('area');
+      const FRETE = 19.9, GRATIS_ACIMA = 200; // valores de exemplo (frete simulado)
+
+      function desenhar() {
+        const itens = C.lista();
+        if (!itens.length) {
+          area.innerHTML = '<p class="vazio">Seu carrinho está vazio. <a href="produtos.html">Escolha um produto</a>.</p>';
+          return;
+        }
+        const sub = C.total();
+        const frete = sub >= GRATIS_ACIMA ? 0 : FRETE;
+
+        area.innerHTML = `
+        <div class="checkout">
+          <section class="login" aria-labelledby="dados-t">
+            <h2 id="dados-t">Seus dados</h2>
+            <form id="pedido" novalidate>
+              <fieldset>
+                <legend>Entrega</legend>
+                <label for="k-nome">Nome completo</label>
+                <input type="text" id="k-nome" autocomplete="name" aria-required="true">
+                <label for="k-email">E-mail</label>
+                <input type="email" id="k-email" autocomplete="email" aria-required="true">
+                <div class="linha">
+                  <div><label for="k-cep">CEP</label><input type="text" id="k-cep" inputmode="numeric" maxlength="9" autocomplete="postal-code" aria-required="true"></div>
+                  <div><label for="k-num">Número</label><input type="text" id="k-num" aria-required="true"></div>
+                </div>
+                <label for="k-end">Endereço</label>
+                <input type="text" id="k-end" autocomplete="street-address" aria-required="true">
+                <label for="k-cid">Cidade</label>
+                <input type="text" id="k-cid" autocomplete="address-level2" aria-required="true">
+              </fieldset>
+              <fieldset>
+                <legend>Pagamento (simulado)</legend>
+                <label class="opcao"><input type="radio" name="pag" value="Pix" checked> Pix</label>
+                <label class="opcao"><input type="radio" name="pag" value="Cartão"> Cartão de crédito</label>
+                <label class="opcao"><input type="radio" name="pag" value="Boleto"> Boleto</label>
+                <p><small>Nenhum pagamento real é feito e nenhum dado de cartão é pedido.</small></p>
+              </fieldset>
+              <button type="submit" class="btn-comprar">Confirmar pedido</button>
+              <p id="erro" class="error-msg" role="alert"></p>
+            </form>
+          </section>
+
+          <section class="login" aria-labelledby="res-t">
+            <h2 id="res-t">Resumo do pedido</h2>
+            <ul class="resumo">
+              ${itens.map(({ p, qtd }) => `<li><span>${qtd}× ${p.nome}</span><span>${C.real(p.preco * qtd)}</span></li>`).join('')}
+              <li><span>Subtotal</span><span>${C.real(sub)}</span></li>
+              <li><span>Frete (simulado)</span><span>${frete ? C.real(frete) : 'Grátis'}</span></li>
+              <li class="total"><span>Total</span><span>${C.real(sub + frete)}</span></li>
+            </ul>
+            <small>Frete grátis em compras a partir de ${C.real(GRATIS_ACIMA)}.</small>
+          </section>
+        </div>`;
+
+        document.getElementById('k-nome').value = u.nome;
+        document.getElementById('k-email').value = u.email;
+        document.getElementById('pedido').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const ids = ['k-nome', 'k-email', 'k-cep', 'k-num', 'k-end', 'k-cid'];
+          const campos = ids.map((i) => document.getElementById(i));
+          campos.forEach((c) => c.classList.remove('error'));
+          const ruins = campos.filter((c) => !c.value.trim());
+          const email = campos[1];
+          if (email.value.trim() && !email.checkValidity()) ruins.push(email);
+
+          if (ruins.length) {
+            ruins.forEach((c) => c.classList.add('error'));
+            document.getElementById('erro').textContent = 'Preencha todos os campos de entrega corretamente.';
+            ruins[0].focus();
+            return;
+          }
+
+          const numero = 'CV-' + Date.now().toString().slice(-6);
+          const pagamento = document.querySelector('input[name="pag"]:checked').value;
+          const nome = campos[0].value.trim().split(' ')[0];
+          const total = sub + frete;
+          try {
+            const todos = JSON.parse(localStorage.getItem('pedidos')) || [];
+            todos.push({ numero, email: u.email, data: new Date().toISOString(), total, pagamento,
+              itens: itens.map(({ p, qtd }) => ({ nome: p.nome, preco: p.preco, qtd })) });
+            localStorage.setItem('pedidos', JSON.stringify(todos));
+          } catch (err) {}
+          C.limpar();
+
+          area.innerHTML = `
+            <section class="login confirmacao" aria-labelledby="ok-t">
+              <div class="check" aria-hidden="true">✅</div>
+              <h2 id="ok-t">Pedido confirmado!</h2>
+              <p>Obrigado, ${nome}. Seu pedido <strong>${numero}</strong> de ${C.real(total)} foi registrado (pagamento: ${pagamento}).</p>
+              <p><small>Esta é uma demonstração: nenhum pagamento foi cobrado e nada será enviado.</small></p>
+              <a class="btn-link" href="pedidos.html">Ver meus pedidos</a>
+              <a class="btn-link" href="produtos.html">Continuar comprando</a>
+            </section>`;
+          area.querySelector('h2').focus?.();
+        });
+      }
+
+      C.aoMudar(desenhar);
+      desenhar();
+    });
+  </script>
+</body>
+</html>

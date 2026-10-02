@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para o formulário</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+
+      <div class="access-controls">
+        <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+      </div>
+
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <section class="login" aria-labelledby="contato-title">
+      <h2 id="contato-title">Fale com a gente</h2>
+      <p>Dúvidas sobre pedidos, produtos ou parcerias? Envie sua mensagem.</p>
+
+      <!-- Sem action="#": o main_menu.js usa form[action="#"] para validar o cadastro -->
+      <form id="contato-form" novalidate>
+        <label for="c-nome">Nome</label>
+        <input type="text" id="c-nome" name="nome" autocomplete="name" aria-required="true">
+
+        <label for="c-email">E-mail</label>
+        <input type="email" id="c-email" name="email" autocomplete="email" aria-required="true">
+
+        <label for="c-assunto">Assunto</label>
+        <select id="c-assunto" name="assunto">
+          <option>Dúvida sobre produto</option>
+          <option>Pedido ou entrega</option>
+          <option>Troca ou devolução</option>
+          <option>Parceria</option>
+          <option>Outro</option>
+        </select>
+
+        <label for="c-msg">Mensagem</label>
+        <textarea id="c-msg" name="mensagem" rows="5" aria-required="true"></textarea>
+
+        <button type="submit" class="btn-enviar">Enviar mensagem</button>
+        <p id="contato-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <footer id="contato" role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contato-form");
+      const status = document.getElementById("contato-status");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const campos = ["c-nome", "c-email", "c-msg"].map((id) => document.getElementById(id));
+        campos.forEach((c) => c.classList.remove("error"));
+
+        const invalidos = campos.filter((c) => !c.value.trim());
+        const email = document.getElementById("c-email");
+        if (email.value.trim() && !email.checkValidity() && !invalidos.includes(email)) invalidos.push(email);
+
+        if (invalidos.length) {
+          invalidos.forEach((c) => c.classList.add("error"));
+          status.className = "error-msg";
+          status.textContent = "Preencha nome, e-mail válido e mensagem para enviar.";
+          invalidos[0].focus();
+          return;
+        }
+
+        // Próximo passo: enviar para um back-end ou serviço de e-mail.
+        status.className = "";
+        status.textContent = "Mensagem enviada! Responderemos em até 2 dias úteis.";
+        form.reset();
+      });
+    });
+  </script>
+  <script src="produtos-dados.js" defer></script>
+  <script src="carrinho.js" defer></script>
+  <script src="conta.js" defer></script>
+</body>
+</html>

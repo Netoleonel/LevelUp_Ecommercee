@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produto - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para o produto</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+      <div class="access-controls">
+        <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+      </div>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="loja" role="main">
+    <a class="voltar" href="produtos.html">← Voltar aos produtos</a>
+    <section id="detalhe" aria-live="polite"></section>
+    <section id="relacionados" class="relacionados" aria-label="Produtos relacionados"></section>
+    <footer role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) new window.VLibras.Widget("https://vlibras.gov.br/app");
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script src="produtos-dados.js" defer></script>
+  <script src="carrinho.js" defer></script>
+  <script src="conta.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const C = window.Carrinho;
+      const id = new URLSearchParams(location.search).get('id');
+      const p = window.PRODUTOS.find((x) => x.id == id);
+      const box = document.getElementById('detalhe');
+
+      if (!p) {
+        box.innerHTML = '<p class="vazio">Produto não encontrado. <a href="produtos.html">Veja todos os produtos</a>.</p>';
+        return;
+      }
+
+      document.title = `${p.nome} - Cosverse`;
+      box.innerHTML = `
+        <div class="detalhe">
+          <div class="thumb">${C.thumb(p)}</div>
+          <div>
+            <h2>${p.nome}</h2>
+            <p>Categoria: <a href="produtos.html?cat=${p.cat}">${p.cat}</a></p>
+            <p>${p.desc}</p>
+            <span class="preco">${C.real(p.preco)}</span>
+            <div class="seletor" role="group" aria-label="Quantidade">
+              <button type="button" id="menos" aria-label="Diminuir quantidade">−</button>
+              <output id="q" aria-live="polite">1</output>
+              <button type="button" id="mais" aria-label="Aumentar quantidade">+</button>
+            </div>
+            <button type="button" id="comprar">Adicionar ao carrinho</button>
+          </div>
+        </div>`;
+
+      let q = 1;
+      const saida = document.getElementById('q');
+      document.getElementById('menos').addEventListener('click', () => { q = Math.max(1, q - 1); saida.textContent = q; });
+      document.getElementById('mais').addEventListener('click', () => { q = Math.min(10, q + 1); saida.textContent = q; });
+      document.getElementById('comprar').addEventListener('click', () => { C.add(p.id, q); C.abrir(true); });
+
+      const rel = window.PRODUTOS.filter((x) => x.cat === p.cat && x.id !== p.id).slice(0, 3);
+      if (rel.length) {
+        document.getElementById('relacionados').innerHTML = `
+          <h2>Você também pode gostar</h2>
+          <div class="grade">${rel.map((r) => `
+            <article class="card produto">
+              <a class="thumb" href="produto.html?id=${r.id}" aria-label="Ver ${r.nome}">${C.thumb(r)}</a>
+              <h3><a href="produto.html?id=${r.id}">${r.nome}</a></h3>
+              <span class="preco">${C.real(r.preco)}</span>
+            </article>`).join('')}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>
