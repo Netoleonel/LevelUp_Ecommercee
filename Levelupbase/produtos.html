@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir para os produtos</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <h1>Cosverse</h1>
+
+      <div class="access-controls">
+        <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+      </div>
+
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li>
+            <button id="abrir-carrinho" class="btn-carrinho" type="button" aria-label="Abrir carrinho">
+              🛒 Carrinho (<span id="qtd-carrinho">0</span>)
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="loja" role="main">
+    <h2>Produtos</h2>
+    <label for="busca" class="sr-only">Buscar produto</label>
+    <input id="busca" class="busca" type="search" placeholder="Buscar produto..." />
+    <div id="filtros" class="filtros" role="group" aria-label="Filtrar por categoria"></div>
+    <section id="grade" class="grade" aria-live="polite" aria-label="Lista de produtos"></section>
+
+    <footer role="contentinfo">
+      <p>© 2025 Cosverse — Feito com 💜 para a comunidade cosplay.</p>
+    </footer>
+  </main>
+
+  <div id="fundo" class="fundo-escuro"></div>
+  <aside id="carrinho" class="carrinho" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="carrinho-topo">
+      <h2>Seu carrinho</h2>
+      <button id="fechar-carrinho" type="button" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <ul id="carrinho-lista" class="carrinho-lista"></ul>
+    <div class="carrinho-rodape">
+      <p class="total"><span>Total</span> <span id="total">R$ 0,00</span></p>
+      <button id="finalizar" type="button" disabled>Finalizar compra</button>
+    </div>
+  </aside>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+  <script src="main_menu.js" defer></script>
+  <script src="loja.js" defer></script>
+</body>
+</html>

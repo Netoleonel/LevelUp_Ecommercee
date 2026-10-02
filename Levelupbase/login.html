@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Cosverse</title>
+  <link rel="stylesheet" href="estileto.css" />
+</head>
+<body>
+  <a class="skip-link" href="#login-section">Ir para login</a>
+
+  <header role="banner">
+    <nav role="navigation" aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="access-controls">
+    <button id="toggle-theme" class="btn-light">🌙 Dark Mode</button>
+  </div>
+
+  <main role="main">
+    <section id="login-section" class="login" aria-labelledby="login-title">
+      <h2 id="login-title">Acessar sua conta</h2>
+
+      <form id="login-form" onsubmit="return verificarCaptcha(event)" role="form">
+        <label for="usuario">email</label>
+        <input type="text" id="usuario" name="usuario" required autocomplete="username">
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required autocomplete="current-password">
+
+        <button type="button" onclick="gerarCaptcha()">Gerar outro código</button>
+
+        <div id="captchaBox"
+            style="font-size: 28px; 
+                  font-weight: bold; 
+                  letter-spacing: 5px; 
+                  margin-bottom: 10px;">
+        </div>
+
+        <canvas id="captchaCanvas" width="200" height="60" style="border:1px solid #000; margin-bottom:10px;"></canvas>
+
+        <label>Digite o código acima:</label>
+        <input type="text" id="captchaInput" required>
+
+        <button type="submit">Entrar</button>
+        <p id="mensagem" role="status" aria-live="polite"></p>
+      </form>
+
+      <p>Ou faça seu cadastro <a href="cadastro.html">clicando aqui!</a></p>
+    </section>
+  </main>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script defer src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.VLibras) {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      }
+    });
+  </script>
+
+  <script src="main_menu.js" defer></script>
+</body>
+</html>
